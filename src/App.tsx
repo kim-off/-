@@ -46,14 +46,28 @@ export default function App() {
           ))}
         </motion.nav>
 
-        {/* Mobile Menu Button Placeholder (Optional) */}
-        <div className="lg:hidden relative z-20">
-          <button className="text-[#5c4d43]">
+        {/* Auth Links & Mobile Menu */}
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="flex items-center gap-6 relative z-20"
+        >
+          <div className="hidden md:flex items-center gap-6 text-sm tracking-widest">
+            <a href="#login" className="text-[#5c4d43] hover:text-[#2c2a29] transition-colors duration-300">
+              로그인
+            </a>
+            <a href="#signup" className="px-5 py-2 border border-[#5c4d43] text-[#5c4d43] rounded-full hover:bg-[#5c4d43] hover:text-[#F9F6F0] transition-all duration-300">
+              회원가입
+            </a>
+          </div>
+
+          <button className="lg:hidden text-[#5c4d43]">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
             </svg>
           </button>
-        </div>
+        </motion.div>
       </header>
 
       {/* Main Content */}
@@ -81,6 +95,19 @@ export default function App() {
           </motion.div>
         </motion.div>
       </main>
+
+      {/* Footer */}
+      <footer className="w-full p-8 pl-12 md:px-20 lg:px-24 md:pb-12 z-10 relative text-left text-xs md:text-sm text-[#5c4d43]/80 leading-relaxed">
+        <div className="space-y-1">
+          <p>상호명 첫눈에 컴퍼니</p>
+          <p>대표이사 김승민</p>
+          <p>BUSINESS LICENSE 00-00-00000</p>
+          <p>이메일 chutnoone@naver.com</p>
+        </div>
+        <p className="mt-4 font-bold text-[#2c2a29]">
+          Copyright ㈜ 첫눈에 - 카톡소개팅 All rights reserved.
+        </p>
+      </footer>
     </div>
   );
 }
