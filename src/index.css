@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Noto Serif KR", serif;
+}
+
+body {
+  font-family: var(--font-serif);
+  background-color: #F9F6F0;
+  color: #2C2A29;
+}
