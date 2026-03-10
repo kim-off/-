@@ -11,21 +11,21 @@ export default function Layout() {
       </div>
 
       {/* Header */}
-      <header className="w-full p-8 md:p-12 flex justify-between items-center z-10 absolute top-0 left-0">
+      <header className="w-full p-8 md:p-12 flex justify-between items-center z-50 absolute top-0 left-0">
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
           className="flex items-center gap-3 relative z-20"
         >
-          <Link to="/" className="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity">
+          <Link to="/" className="flex items-center gap-3 cursor-pointer group">
             <img 
               src="https://i.postimg.cc/cJgFyMmH/hateu.jpg" 
               alt="첫눈에 로고" 
-              className="w-8 h-8 md:w-10 md:h-10 object-cover rounded-full"
+              className="w-8 h-8 md:w-10 md:h-10 object-cover rounded-full transition-transform duration-300 group-hover:scale-110"
               referrerPolicy="no-referrer"
             />
-            <span className="text-xl md:text-2xl font-medium tracking-[0.2em] text-[#5c4d43]">
+            <span className="text-xl md:text-2xl font-medium tracking-[0.2em] text-[#5c4d43] transition-colors duration-300 group-hover:text-[#2c2a29]">
               첫눈에
             </span>
           </Link>
