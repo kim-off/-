@@ -38,13 +38,20 @@ export default function Layout() {
           transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
           className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-10"
         >
-          {['첫눈에', '매니저 소개', '만남 후기', '공지사항', '문의하기', '소개 받기'].map((item) => (
+          {[
+            { name: '첫눈에', path: '/about' },
+            { name: '매니저 소개', path: '/manager' },
+            { name: '만남 후기', path: '/reviews' },
+            { name: '공지사항', path: '/notices' },
+            { name: '문의하기', path: '/contact' },
+            { name: '소개 받기', path: '/match' }
+          ].map((item) => (
             <Link 
-              key={item} 
-              to={item === '첫눈에' ? '/about' : `#${item}`} 
+              key={item.name} 
+              to={item.path} 
               className="text-[#5c4d43] hover:text-[#2c2a29] text-sm tracking-widest transition-colors duration-300 hover:-translate-y-0.5 transform inline-block"
             >
-              {item}
+              {item.name}
             </Link>
           ))}
         </motion.nav>
