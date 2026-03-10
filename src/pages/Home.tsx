@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import { Link } from 'react-router-dom';
 
 export default function Home() {
   return (
@@ -20,9 +21,9 @@ export default function Home() {
           transition={{ duration: 1.5, delay: 1.5 }}
           className="pt-16"
         >
-          <button className="px-10 py-4 bg-[#3a302b] text-[#F9F6F0] rounded-full text-sm md:text-base tracking-[0.15em] hover:bg-[#2c2a29] transition-all duration-500 shadow-xl shadow-[#3a302b]/10 hover:shadow-[#3a302b]/20 hover:-translate-y-0.5">
+          <Link to="/match" className="inline-block px-10 py-4 bg-[#3a302b] text-[#F9F6F0] rounded-full text-sm md:text-base tracking-[0.15em] hover:bg-[#2c2a29] transition-all duration-500 shadow-xl shadow-[#3a302b]/10 hover:shadow-[#3a302b]/20 hover:-translate-y-0.5">
             지금 소개 받기
-          </button>
+          </Link>
         </motion.div>
       </motion.div>
     </main>

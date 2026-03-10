@@ -1,7 +1,19 @@
-import { motion } from 'motion/react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { Link, Outlet } from 'react-router-dom';
 
 export default function Layout() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const navItems = [
+    { name: '첫눈에', path: '/about' },
+    { name: '매니저 소개', path: '/manager' },
+    { name: '만남 후기', path: '/reviews' },
+    { name: '공지사항', path: '/notices' },
+    { name: '문의하기', path: '/contact' },
+    { name: '소개 받기', path: '/match' }
+  ];
+
   return (
     <div className="min-h-screen relative overflow-hidden flex flex-col">
       {/* Background atmospheric gradients */}
@@ -38,14 +50,7 @@ export default function Layout() {
           transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
           className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-10"
         >
-          {[
-            { name: '첫눈에', path: '/about' },
-            { name: '매니저 소개', path: '/manager' },
-            { name: '만남 후기', path: '/reviews' },
-            { name: '공지사항', path: '/notices' },
-            { name: '문의하기', path: '/contact' },
-            { name: '소개 받기', path: '/match' }
-          ].map((item) => (
+          {navItems.map((item) => (
             <Link 
               key={item.name} 
               to={item.path} 
@@ -72,13 +77,64 @@ export default function Layout() {
             </a>
           </div>
 
-          <button className="lg:hidden text-[#5c4d43]">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-            </svg>
+          <button 
+            className="lg:hidden text-[#5c4d43] z-50 relative"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? (
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-7 h-7">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-7 h-7">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              </svg>
+            )}
           </button>
         </motion.div>
       </header>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-40 bg-[#F9F6F0] flex flex-col items-center justify-center lg:hidden"
+          >
+            <nav className="flex flex-col items-center gap-8">
+              {navItems.map((item) => (
+                <Link
+                  key={item.name}
+                  to={item.path}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-[#5c4d43] hover:text-[#2c2a29] text-xl tracking-widest transition-colors duration-300"
+                >
+                  {item.name}
+                </Link>
+              ))}
+              <div className="flex flex-col items-center gap-6 mt-8 pt-8 border-t border-[#5c4d43]/20 w-full">
+                <a 
+                  href="#login" 
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-[#5c4d43] hover:text-[#2c2a29] text-lg tracking-widest transition-colors duration-300"
+                >
+                  로그인
+                </a>
+                <a 
+                  href="#signup" 
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="px-8 py-3 border border-[#5c4d43] text-[#5c4d43] rounded-full hover:bg-[#5c4d43] hover:text-[#F9F6F0] transition-all duration-300 text-lg tracking-widest"
+                >
+                  회원가입
+                </a>
+              </div>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Main Content Area */}
       <Outlet />
