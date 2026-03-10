@@ -18,7 +18,7 @@ export default function Layout() {
           transition={{ duration: 1, ease: "easeOut" }}
           className="flex items-center gap-3 relative z-20"
         >
-          <Link to="/" className="flex items-center gap-3">
+          <Link to="/" className="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity">
             <img 
               src="https://i.postimg.cc/cJgFyMmH/hateu.jpg" 
               alt="첫눈에 로고" 
